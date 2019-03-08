@@ -1,0 +1,111 @@
+
+<center>
+<div class="tool">
+	<form id="calForm">
+	<table width=50%>
+	<tr>
+        <td width=25%></td>
+        <td> <b>Coin Price [BTC] </td> <td width=20></td> <td> <input id="ipriceb" type=text name="ipriceb" value="0.0001" style="text-align:center;" readonly> </td>
+        <td width=25%></td>
+        </tr><tr>
+        <td width=25%></td>
+        <td> <b>Coin Price [USD] </td> <td width=20></td> <td> <input id="ipriceu" type=text name="ipriceu" value="0.69" style="text-align:center;" readonly> </td>
+        <td width=25%></td>
+        </tr><tr>
+        <td width=25%></td>
+	<td> <b>Difficulty AVG 24H</td> <td width=20></td> <td> <input id="idiff" type=text name="idiff" value="53.05" style="text-align:center;" readonly> </td>
+        <td width=25%></td>
+	</tr><tr>
+        <td width=25%></td>
+	<td> <b>Block Reward </td> <td width=20></td> <td> <input id="iblockr" type=text name="iblockr" value="10" style="text-align:center;" readonly> </td>
+        <td width=25%></td>
+	</tr><tr>
+        <td width=25%></td>
+	<td> <b>Hash Rate (Mh) </td> <td width=20></td> <td> <input autofocus autocomplete="off" id="cost_input" type="text" name="cost_input" value="1" min="1" style="text-align:center;"> </td>
+        <td width=25%></td>
+	</tr><tr>
+        <td width=25%></td>
+	<td> <b>Coin / Day </td> <td width=20></td> <td> <font color=blue><b><span id="gains"></span></font> </td>
+        <td width=25%></td>
+	</tr><tr>
+        <td width=25%></td>
+        <td> <b>Income /Day </td> <td width=20></td> <td> <font color=magenta><b><span id="gains5"></span> <span id="gains2"></span></font> </td>
+        <td width=25%></td>
+        </tr><tr>
+        <td width=25%></td>
+        <td> <b>Income /Week </td> <td width=20></td> <td> <font color=purple><b><span id="gains6"></span> <span id="gains3"></span></font> </td>
+        <td width=25%></td>
+        </tr><tr>
+        <td width=25%></td>
+        <td> <b>Income /Month </td> <td width=20></td> <td> <font color=green><b><span id="gains7"></span> <span id="gains4"></span></font> </td>
+        <td width=25%></td>
+	</tr><tr>
+	<td colspan=3><br></td>
+        </tr><tr>
+        <td width=25%></td>
+	<td colspan=3 align=center><button id="roiClick" name="submit">Calculate</button></td>
+        <td width=25%></td>
+	</tr>
+	</table>
+	</form>
+        <center><small> Please Insert your Hash and click Calculate </small></center>
+
+<script>
+
+var cost, returnVal;
+
+function calRoi() {
+        var diff = document.getElementById("idiff").value;
+        var blockr = document.getElementById("iblockr").value;
+	var hash = document.getElementById("cost_input").value;
+	var price = document.getElementById("ipriceu").value;
+        var priceb = document.getElementById("ipriceb").value;
+	hash = parseFloat(hash);
+
+	var reward,reward2,reward3,reward4;
+	var reward5,reward6,reward7;
+	reward = (86400 / ( ( diff * 4294967296 ) / ( hash * 1000000 ) ) ) * blockr;
+	// reward = (diff * 4294967296) / hash2;
+	reward = reward.toFixed(2);
+	reward2 = reward * price;
+        reward3 = reward * price * 7;
+        reward4 = reward * price * 30;
+        reward2 = reward2.toFixed(2);
+        reward3 = reward3.toFixed(2);
+        reward4 = reward4.toFixed(2);
+        reward5 = reward * priceb * 1;
+        reward6 = reward * priceb * 7;
+        reward7 = reward * priceb * 30;
+        reward5 = reward5.toFixed(8);
+        reward6 = reward6.toFixed(8);
+        reward7 = reward7.toFixed(8);
+
+	var calc = {
+		'gains' : reward + ' Coins',
+                'gains2' : '[ $ ' + reward2 + ' ]',
+                'gains3' : '[ $ ' + reward3 + ' ]',
+                'gains4' : '[ $ ' + reward4 + ' ]',
+                'gains5' : reward5 + ' BTC',
+                'gains6' : reward6 + ' BTC',
+                'gains7' : reward7 + ' BTC'
+	};
+
+	updateThis(calc);
+}
+
+function updateThis(stuff) {
+	document.getElementById('gains').innerHTML = stuff.gains;
+        document.getElementById('gains2').innerHTML = stuff.gains2;
+        document.getElementById('gains3').innerHTML = stuff.gains3;
+        document.getElementById('gains4').innerHTML = stuff.gains4;
+        document.getElementById('gains5').innerHTML = stuff.gains5;
+        document.getElementById('gains6').innerHTML = stuff.gains6;
+        document.getElementById('gains7').innerHTML = stuff.gains7;
+}
+
+document.getElementById('calForm').addEventListener('submit', function(e){
+	e.preventDefault();
+	calRoi();
+});
+</script>
+</div>

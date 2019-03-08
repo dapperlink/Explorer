@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  .col-md-12.col-xs-12
+    .panel.panel-default
+      .panel-heading
+        strong Mining Calculator
+      .panel-body
+        <center>
+        :markdown
+
+          ------
+
+          ### *<font color=red><small><b>Results May Vary depends on fluctuate Difficulty , Pools Network and your hash rate performance<br> Not Listed in any Exchange yet - Use 10K SAT as sample price</small></b></font>*
+        :markdown
+
+          ------
+        include ../public/calc.html
+
+    .footer-padding

@@ -1,0 +1,40 @@
+
+<link href="https://blockxplorer.info/flags.css" rel=stylesheet type="text/css">
+<link rel="stylesheet" href="https://blockxplorer.info/map/jqvmap.min.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqvmap/1.5.1/jquery.vmap.min.js"></script>
+<script>
+var sample_data = {"cn":"36","kr":"4","jp":"2","us":"4","au":"1","br":"1",};</script>
+<script type="text/javascript" src="https://blockxplorer.info/map/jquery.vmap.world.js" charset="utf-8"></script>
+<script>
+jQuery(document).ready(function () {
+                        jQuery('#vmap').vectorMap({
+                                map: 'world_en',
+                                backgroundColor: '#FFFFFF',
+                                color: '#ffffff',
+                                hoverOpacity: 0.6,
+                                borderColor: 'black',
+                                borderOpacity: 0.9,
+                                borderWidth: 0.6,
+                                hoverColor: 'green',
+                                selectedColor: 'green',
+                                enableZoom: true,
+                                zoomOnScroll: true,
+                                showTooltip: true,
+                                scaleColors: ['#ff0000', '#b600ff', '#0800ff', '#ffe400'],
+                                values: sample_data,
+                                normalizeFunction: 'polynomial',
+                                onLabelShow: function(event, label, code)
+                                {
+					if (code == 'XX'){label.text('Unknown Location');}else if (code == 'cn'){label.text('China : 36 Nodes');}else if (code == 'kr'){label.text('South Korea : 4 Nodes');}else if (code == 'jp'){label.text('Japan : 2 Nodes');}else if (code == 'us'){label.text('United States : 4 Nodes');}else if (code == 'au'){label.text('Australia : 1 Nodes');}else if (code == 'br'){label.text('Brazil : 1 Nodes');}
+				}
+                        });
+                });</script>
+<table>
+	<tr>
+	<td width=20%></td>
+	<td></td><td width=10></td><td></td>
+	<td width=10%></td>
+	<td></td><td width=10></td><td></td>
+	<td width=20%></td></tr><tr>
+	<td width=25%></td><td><b><img src="https://blockxplorer.info/country-flags/svg/cn.svg" width=15 height=15>China</b></td><td width=10></td><td align=center><small>36 Nodes</td><td width=10%></td><td><b><img src="https://blockxplorer.info/country-flags/svg/kr.svg" width=15 height=15>South Korea</b></td><td width=10></td><td align=center><small>4 Nodes</td><td width=25%></td></tr><tr><td width=25%></td><td><b><img src="https://blockxplorer.info/country-flags/svg/jp.svg" width=15 height=15>Japan</b></td><td width=10></td><td align=center><small>2 Nodes</td><td width=10%></td><td><b><img src="https://blockxplorer.info/country-flags/svg/us.svg" width=15 height=15>United States</b></td><td width=10></td><td align=center><small>4 Nodes</td><td width=25%></td></tr><tr><td width=25%></td><td><b><img src="https://blockxplorer.info/country-flags/svg/au.svg" width=15 height=15>Australia</b></td><td width=10></td><td align=center><small>1 Nodes</td><td width=10%></td><td><b><img src="https://blockxplorer.info/country-flags/svg/br.svg" width=15 height=15>Brazil</b></td><td width=10></td><td align=center><small>1 Nodes</td><td width=25%></td></tr><tr></tr></table><br><br>
+<div id="vmap" style="width: 800px; height: 600px;"></div>
